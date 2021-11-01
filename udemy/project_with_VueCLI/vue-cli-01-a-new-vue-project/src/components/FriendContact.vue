@@ -1,8 +1,8 @@
 <template>
    <li>
        <h2>{{ friend.friendName }}</h2>
-       <button @click="toogleDetails">Show Details</button>
-        <ul v-if="datailsVisibility">
+       <button @click="toogleDetails">{{ detailsVisibility ? 'Hide' : 'Show' }} Details</button>
+        <ul v-if="detailsVisibility">
             <li><strong>Phone:</strong>{{ friend.phone }}</li>
             <li><strong>Email:</strong>{{ friend.email }}</li>
         </ul>
@@ -13,7 +13,7 @@
     export default {
         data() {
             return {
-                datailsVisibility: false,
+                detailsVisibility: false,
                 friend: {
                     id: 'manuel',
                     friendName: 'Jane July',
@@ -24,7 +24,7 @@
         },
         methods: {
             toogleDetails() {
-                this.datailsVisibility = !this.datailsVisibility;
+                this.detailsVisibility = !this.detailsVisibility;
             }
         },
         computed: {}
