@@ -1,16 +1,16 @@
 <template>
-    <form>
+    <form @submit.prevent="addFriend">
         <div>
             <label>Name</label>
-            <input type="text"/>
+            <input type="text" v-model="friend.friendName"/>
         </div>
         <div>
             <label>Email</label>
-            <input type="email"/>
+            <input type="email" v-model="friend.email"/>
         </div>
         <div>
             <label>Phone Number</label>
-            <input type="tel"/>
+            <input type="tel" v-model="friend.phone"/>
         </div>
         <div>
             <button>Add a new friend</button>
@@ -20,10 +20,32 @@
 
 <script>
     export default {
-        data() {
-            return {}
+        emits: {
+            'add-friend': function(id) {
+                if (id) {
+                    return true;
+                } else {
+                    console.wan('not id')
+                }
+            }
         },
-        methods: {},
+        data() {
+            return {
+                friend: {
+                    id: String(new Date()),
+                    friendName: '',
+                    phone: '',
+                    email: '',
+                    isFavourite: false
+                }
+            }
+        },
+        methods: {
+            addFriend() {
+                this.$emit('add-friend', this.friend);
+
+            }
+        },
         computed: {}
     };
 </script>
@@ -38,9 +60,6 @@
         margin-right: 1rem;
         width: 7rem;
         display: inline-block;
-    }
-    #app form {
-        border-bottom: 4px solid #ccc;
     }
     #app form div {
         margin: 1rem 0;
