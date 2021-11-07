@@ -2,8 +2,13 @@
     <section>
         <header><h1>My Friends</h1></header>
         <ul>
-            <friend-contact></friend-contact>
-            <friend-contact></friend-contact>
+            <friend-contact
+                v-for="friend in friends"
+                :key = "friend.id" 
+                :name = "friend.friendName" 
+                :is-favourite="friend.isFavourite"
+                :email-address="friend.email"
+            ></friend-contact>
         </ul>
     </section>
 </template>
@@ -21,7 +26,7 @@
                     },
                     {
                         id: 'manuel',
-                        friendName: 'Lucu July',
+                        friendName: 'Lucu Jкккк',
                         phone: '234 555 23',
                         email: 'test122312312@gmail.com'
                     },

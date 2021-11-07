@@ -1,7 +1,8 @@
 <template>
    <li>
-       <h2>{{ name }}</h2>
+       <h2>{{ name }} {{ friendIsFavourite ? '(Favourite)' : '' }}</h2>
        <button @click="toogleDetails">{{ detailsVisibility ? 'Hide' : 'Show' }} Details</button>
+       <button @click="toogleFavourite">{{ friendIsFavourite ? 'Not my favourite' : 'Make favourite' }}</button>
         <ul v-if="detailsVisibility">
             <li><strong>Phone:</strong>{{ phoneNumber }}</li>
             <li><strong>Email:</strong>{{ emailAddress }}</li>
@@ -33,17 +34,15 @@
         data() {
             return {
                 detailsVisibility: false,
-                friend: {
-                    id: 'manuel',
-                    friendName: 'Jane July',
-                    phone: '121 231 23 23',
-                    email: 'test@gmail.com'
-                }
+                friendIsFavourite: this.isFavourite
             };
         },
         methods: {
             toogleDetails() {
                 this.detailsVisibility = !this.detailsVisibility;
+            },
+            toogleFavourite() {
+                this.friendIsFavourite = !this.friendIsFavourite;
             }
         },
         computed: {}
