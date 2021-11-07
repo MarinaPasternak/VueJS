@@ -13,6 +13,7 @@
                 :email-address="friend.email"
                 :phone-number="friend.phone"
                 @toogle-favourite="toogleFavourite"
+                @delete-current-friend="deleteFriend"
             ></friend-contact>
         </ul>
         <add-friend-form 
@@ -27,14 +28,14 @@
             return {
                 friends: [
                     {
-                        id: 'manuel',
+                        id: '12',
                         friendName: 'Jane July',
                         phone: '121 231 23 23',
                         email: 'test@gmail.com',
                         isFavourite: true
                     },
                     {
-                        id: 'tartte',
+                        id: '11',
                         friendName: 'Lucu Jкккк',
                         phone: '234 555 23',
                         email: 'test122312312@gmail.com',
@@ -45,12 +46,15 @@
         },
         methods: {
             toogleFavourite(friendId) { 
-               const foundFriend = this.friends.find( (friend) => friend.id === friendId);
+               const foundFriend = this.friends.find((friend) => friend.id === friendId);
                foundFriend.isFavourite = !foundFriend.isFavourite;
             },
             addNewFriend(friendNew) { 
                this.friends.push(friendNew);
-            }
+            },
+            deleteFriend(friendID) {
+                this.friends = this.friends.filter((friend) => friend.id !== friendID);
+            } 
         },
         computed: {}
     };

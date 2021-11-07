@@ -7,6 +7,7 @@
             <li><strong>Phone:</strong>{{ phoneNumber }}</li>
             <li><strong>Email:</strong>{{ emailAddress }}</li>
         </ul>
+        <button @click="deleteCurrentFriend">Delete Friend</button>
    </li>
 </template>
 
@@ -36,15 +37,7 @@
             }
         },
 
-        emits: {
-            'toogle-favourite': function(id) {
-                if (id) {
-                    return true;
-                } else {
-                    console.wan('not id')
-                }
-            }
-        },
+        emits: ['toogle-favourite', 'delete-current-friend'],
         data() {
             return {
                 detailsVisibility: false,
@@ -56,6 +49,9 @@
             },
             toogleFavourite() {
                 this.$emit('toogle-favourite', this.id);
+            },
+            deleteCurrentFriend() {
+                this.$emit('delete-current-friend', this.id);
             }
         },
         computed: {}
