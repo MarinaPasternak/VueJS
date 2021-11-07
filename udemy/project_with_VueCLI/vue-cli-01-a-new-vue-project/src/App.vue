@@ -1,15 +1,21 @@
 <template>
     <section>
-        <header><h1>My Friends</h1></header>
+        <header>
+            <h1>My Friends</h1>
+        </header>
         <ul>
             <friend-contact
                 v-for="friend in friends"
+                :id="friend.id"
                 :key = "friend.id" 
                 :name = "friend.friendName" 
                 :is-favourite="friend.isFavourite"
                 :email-address="friend.email"
+                :phone-number="friend.phone"
+                @toogle-favourite="toogleFavourite"
             ></friend-contact>
         </ul>
+        <add-friend-form></add-friend-form>
     </section>
 </template>
 
@@ -22,18 +28,25 @@
                         id: 'manuel',
                         friendName: 'Jane July',
                         phone: '121 231 23 23',
-                        email: 'test@gmail.com'
+                        email: 'test@gmail.com',
+                        isFavourite: true
                     },
                     {
-                        id: 'manuel',
+                        id: 'tartte',
                         friendName: 'Lucu Jкккк',
                         phone: '234 555 23',
-                        email: 'test122312312@gmail.com'
+                        email: 'test122312312@gmail.com',
+                        isFavourite: true
                     },
                 ]
             };
         },
-        methods: {},
+        methods: {
+            toogleFavourite(friendId) { 
+               const foundFriend = this.friends.find( (friend) => friend.id === friendId);
+               foundFriend.isFavourite = !foundFriend.isFavourite;
+            }
+        },
         computed: {}
     };
 </script>
@@ -71,7 +84,7 @@
     list-style: none;
     }
 
-    #app li {
+    #app li, #app form {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     margin: 1rem auto;
     border-radius: 10px;
