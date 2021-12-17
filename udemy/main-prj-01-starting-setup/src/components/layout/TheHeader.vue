@@ -15,7 +15,7 @@
 </template>
 
 <style>
-    header {
+  header {
   width: 100%;
   height: 5rem;
   background-color: #3d008d;
