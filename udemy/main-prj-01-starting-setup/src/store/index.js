@@ -5,6 +5,16 @@ import coachesModule from './modules/coaches/index.js';
 const store = createStore({
     modules: {
         coaches: coachesModule
+    },
+    state() {
+        return {
+            userID: 'c3'
+        };
+    },
+    getters: {
+        userID(state) {
+            return state.userID;
+        }
     }
 });
 
